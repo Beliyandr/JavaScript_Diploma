@@ -5,7 +5,7 @@ window.addEventListener('DOMContentLoaded', function () {
       btnEngineer = document.querySelector('.popup_engineer_btn'),
       phoneLink = document.querySelectorAll('.phone_link'),
       closeForm = document.querySelectorAll('.popup_close'),
-      timerPopup = setTimeout(openModalPopup, 5000);
+      timerPopup = setTimeout(openModalPopup, 60000);
 
   function openModalPopup(popup = modalPopup) {
     popup.style.display = 'block';
