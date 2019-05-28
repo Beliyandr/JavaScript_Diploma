@@ -80,6 +80,7 @@ forms.forEach(function(item, i) {
 
 
 })
+validInputPhone();
 
 })
 
