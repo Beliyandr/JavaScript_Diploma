@@ -28,7 +28,7 @@ function validInputPhone() {
       })
     })
   }
-function form() {
+
 
 forms.forEach(function(item, i) {
   forms[i].addEventListener('submit', function (event) {
@@ -77,17 +77,11 @@ forms.forEach(function(item, i) {
   .catch(() => statuMessage.innerHTML = message.failure)
   .then(clearInput)
 
-clearInput();
 
-validInputPhone();
 
 })
 
 })
-
-}
-
-form();
 
 
 });
