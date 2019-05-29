@@ -34,6 +34,7 @@ forms.forEach(function(item, i) {
   forms[i].addEventListener('submit', function (event) {
     event.preventDefault();
     forms[i].appendChild(statuMessage);
+    if (i != 8){
     let formData = new FormData(forms[i]);
 
 
@@ -78,7 +79,7 @@ forms.forEach(function(item, i) {
   .then(clearInput)
 
 
-
+}
 })
 validInputPhone();
 

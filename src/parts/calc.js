@@ -10,9 +10,9 @@ let btnsCalc = document.querySelectorAll('.popup_calc_btn'),
     checkbox = document.getElementsByName('checkbox-test'),
     labelCheckBox = document.querySelectorAll('.label'),
     allFormData = {
-      width: '2',
-      height: '2',
-      viewType: '2'
+      width: '0',
+      height: '0',
+      viewType: '0'
     };
 
 function validFormControl() {
@@ -101,6 +101,7 @@ closeForm();
 return(allFormData);
 }
 
+
 let forms = document.querySelectorAll('.form'),
 message = {
   loading: 'Загрузка...',
@@ -109,13 +110,14 @@ message = {
 },
 statuMessage = document.createElement('div');
 statuMessage.style.color = 'red';
-
+console.log(forms);
 
 
 forms.forEach(function(item, i) {
   forms[i].addEventListener('submit', function (event) {
     event.preventDefault();
     forms[i].appendChild(statuMessage);
+    if (i == 8) { // условие чтобы не выводилось несколько раз на сервер
     let formData = new FormData(forms[i]);
 
 
@@ -151,6 +153,7 @@ forms.forEach(function(item, i) {
   }
   
   postData(formData)
+}
   })
   })
 
