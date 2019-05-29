@@ -1722,11 +1722,7 @@ function calc() {
       event.preventDefault();
 
       if (i == 8) {
-        // условие чтобы не выводилось несколько раз на сервер
-        forms[i].appendChild(statusMessage);
-        var formData = new FormData(forms[i]);
-
-        function postData(data) {
+        var postData = function postData(data) {
           return new _Promise(function (resolve, reject) {
             var request = new XMLHttpRequest();
             request.open('POST', 'server.php');
@@ -1746,8 +1742,11 @@ function calc() {
             var json = JSON.stringify(allFormData);
             request.send(json);
           });
-        }
+        };
 
+        // условие чтобы не выводилось несколько раз на сервер
+        forms[i].appendChild(statusMessage);
+        var formData = new FormData(forms[i]);
         console.log(forms);
         postData(formData).then(function () {
           return statusMessage.innerHTML = message.loading;
