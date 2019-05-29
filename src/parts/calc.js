@@ -1,4 +1,4 @@
-window.addEventListener('DOMContentLoaded', function () {
+function calc() {
 
 let btnsCalc = document.querySelectorAll('.popup_calc_btn'),
     formCalc = document.querySelectorAll('.popup_calc, .popup_calc_profile, .popup_calc_end'),
@@ -114,8 +114,8 @@ message = {
   success: 'Спасибо! Скоро мы с вами свяжемся',
   failure: "Что-то пошло не так..."
 },
-statuMessage = document.createElement('div');
-statuMessage.style.color = 'red';
+statusMessage = document.createElement('div');
+statusMessage.style.color = 'red';
 
 function clearInput() {
   for (let j = 0; j < input.length; j++) {
@@ -131,7 +131,7 @@ forms.forEach(function(item, i) {
   forms[i].addEventListener('submit', function (event) {
     event.preventDefault();
     if (i == 8) { // условие чтобы не выводилось несколько раз на сервер
-      forms[i].appendChild(statuMessage);
+      forms[i].appendChild(statusMessage);
     let formData = new FormData(forms[i]);
 
 
@@ -166,14 +166,14 @@ forms.forEach(function(item, i) {
 
 
   }
-  
+  console.log(forms);
   postData(formData)
 
-  .then(() => statuMessage.innerHTML = message.loading)
+  .then(() => statusMessage.innerHTML = message.loading)
   .then(() => {
-      statuMessage.innerHTML = message.success;
+      statusMessage.innerHTML = message.success;
   })
-  .catch(() => statuMessage.innerHTML = message.failure)
+  .catch(() => statusMessage.innerHTML = message.failure)
   .then(clearInput)
   .then(closeForm)
   
@@ -182,4 +182,6 @@ forms.forEach(function(item, i) {
   })
 
 
-});
+};
+
+module.exports = calc;

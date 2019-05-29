@@ -1,4 +1,4 @@
-window.addEventListener('DOMContentLoaded', function () {
+function decoration() {
   let decoration = document.querySelector('.decoration'),
       decorSlider = decoration.querySelector('.decoration_slider'),
       sliderItems = decorSlider.querySelectorAll('.decoration_item'),
@@ -21,4 +21,6 @@ window.addEventListener('DOMContentLoaded', function () {
       });
 
 
-});
+};
+
+module.exports = decoration;

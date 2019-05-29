@@ -1,4 +1,4 @@
-window.addEventListener('DOMContentLoaded', function () {
+function glazing() {
 let glazing = document.querySelector('.glazing_slider'),
     elemGlaz = glazing.querySelectorAll('.glazing_block'),
     linkGlaz = document.querySelectorAll('.glazing_block a'),
@@ -14,4 +14,6 @@ let glazing = document.querySelector('.glazing_slider'),
         row[i].style.display = 'block';
     });
 });
-});
+};
+
+module.exports = glazing;

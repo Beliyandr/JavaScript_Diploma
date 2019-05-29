@@ -1,4 +1,4 @@
-window.addEventListener('DOMContentLoaded', function () {
+function modalForm() {
 
 
   let forms = document.querySelectorAll('.form'),
@@ -9,8 +9,8 @@ window.addEventListener('DOMContentLoaded', function () {
       success: 'Спасибо! Скоро мы с вами свяжемся',
       failure: "Что-то пошло не так..."
     },
-    statuMessage = document.createElement('div');
-    statuMessage.style.color = 'red';
+    statusMessage = document.createElement('div');
+    statusMessage.style.color = 'red';
 
     function clearInput() {
       for (let j = 0; j < formInput.length; j++) {
@@ -31,10 +31,11 @@ function validInputPhone() {
 
 
 forms.forEach(function(item, i) {
+  if (i != 8){
   forms[i].addEventListener('submit', function (event) {
     event.preventDefault();
-    forms[i].appendChild(statuMessage);
-    if (i != 8){
+    forms[i].appendChild(statusMessage);
+    
     let formData = new FormData(forms[i]);
 
 
@@ -71,19 +72,22 @@ forms.forEach(function(item, i) {
   
   postData(formData)
 
-  .then(() => statuMessage.innerHTML = message.loading)
+  .then(() => statusMessage.innerHTML = message.loading)
   .then(() => {
-      statuMessage.innerHTML = message.success;
+      statusMessage.innerHTML = message.success;
   })
-  .catch(() => statuMessage.innerHTML = message.failure)
+  .catch(() => statusMessage.innerHTML = message.failure)
   .then(clearInput)
 
 
-}
+
 })
+}
 validInputPhone();
 
 })
 
 
-});
+};
+
+module.exports = modalForm;

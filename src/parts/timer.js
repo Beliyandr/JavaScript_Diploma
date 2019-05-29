@@ -1,4 +1,5 @@
-window.addEventListener('DOMContentLoaded', function () {
+function timer() {
+
 let deadLine = '2019-12-18';
 
 function getTimeRemaining(endtime) {
@@ -45,5 +46,6 @@ function setClock(id,endtime) {
 
 setClock('timer', deadLine);
 
+};
 
-});
+module.exports = timer;

@@ -1,4 +1,4 @@
-window.addEventListener('DOMContentLoaded', function () {
+function modal() {
 
   let modalPopup = document.querySelector('.popup'),
       modalEngineer = document.querySelector('.popup_engineer'),
@@ -48,4 +48,6 @@ window.addEventListener('DOMContentLoaded', function () {
     }
   })
   ///// END CLOSE FORM //////
-});
+};
+
+module.exports = modal;

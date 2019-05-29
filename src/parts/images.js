@@ -1,4 +1,4 @@
-window.addEventListener('DOMContentLoaded', function () {
+function images() {
 
 let section = document.querySelector('.works'),
     originImg = section.querySelectorAll('.originImg'),
@@ -50,4 +50,6 @@ function closeModalImg() {
             });
         });
 
-});
+};
+
+module.exports = images;
