@@ -9,6 +9,7 @@ let btnsCalc = document.querySelectorAll('.popup_calc_btn'),
     nextFormBtns = document.querySelectorAll('.popup_calc_button, .popup_calc_profile_button'),
     checkbox = document.getElementsByName('checkbox-test'),
     labelCheckBox = document.querySelectorAll('.label'),
+    input = document.querySelectorAll('input'),
     allFormData = {
       width: '0',
       height: '0',
@@ -29,12 +30,18 @@ function closeForm(){
   closeForms.forEach(function(item, i) {
     closeForms[i].addEventListener('click', function() {
       formCalc[i].style.display = 'none';
+      allFormData = {
+        width: '0',
+        height: '0',
+        viewType: '0'
+      };
     })
   })
 };
 
 calc();
 
+// function CALC ///////
 function calc() {
 balconIconsImg.forEach(function(item, i){
   balconIconsImg[i].addEventListener('click', function() {
@@ -51,12 +58,12 @@ function clearFormCalc () {
     formCalc[j].style.display = 'none';
   }
 }
-let k = 1;
+
 btnsCalc.forEach(function(item, i){
   btnsCalc[i].addEventListener('click', function() {
     event.preventDefault();
     formCalc[0].style.display = 'block';
-    k = 1;
+    let k = 1;
     nextFormBtns.forEach(function(item, d) {
     nextFormBtns[d].addEventListener('click', function() {
       clearFormCalc ();
@@ -73,14 +80,12 @@ checkbox.forEach(function(item , j) {
       checkbox[0].checked;
       checkbox[1].checked = false;
      allFormData.viewType = labelCheckBox[0].textContent; 
-     console.log(allFormData);
      return(allFormData);
     }else if(j = 1){
       checkbox[0].checked = false;
       checkbox[1].checked;
       allFormData.viewType = labelCheckBox[1].textContent; 
       return(allFormData);
-      console.log(allFormData);
     }
     
 })
@@ -101,6 +106,7 @@ closeForm();
 return(allFormData);
 }
 
+//End CALC //////////////
 
 let forms = document.querySelectorAll('.form'),
 message = {
@@ -110,14 +116,22 @@ message = {
 },
 statuMessage = document.createElement('div');
 statuMessage.style.color = 'red';
-console.log(forms);
+
+function clearInput() {
+  for (let j = 0; j < input.length; j++) {
+    input[j].value = '';
+    checkbox[1].checked = false;
+    checkbox[0].checked = false;
+      // очистка всех инпутов
+  }
+}
 
 
 forms.forEach(function(item, i) {
   forms[i].addEventListener('submit', function (event) {
     event.preventDefault();
-    forms[i].appendChild(statuMessage);
     if (i == 8) { // условие чтобы не выводилось несколько раз на сервер
+      forms[i].appendChild(statuMessage);
     let formData = new FormData(forms[i]);
 
 
@@ -147,12 +161,22 @@ forms.forEach(function(item, i) {
           });
           let json = JSON.stringify(allFormData);
           request.send(json);
+
       })
 
 
   }
   
   postData(formData)
+
+  .then(() => statuMessage.innerHTML = message.loading)
+  .then(() => {
+      statuMessage.innerHTML = message.success;
+  })
+  .catch(() => statuMessage.innerHTML = message.failure)
+  .then(clearInput)
+  .then(closeForm)
+  
 }
   })
   })
